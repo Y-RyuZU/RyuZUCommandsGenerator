@@ -10,7 +10,7 @@ public class CommandData {
     private final String[] args;
     private final boolean isTabComplete;
 
-    public CommandData(CommandSender sender, Command command, String label, String[] args , boolean isTabComplete) {
+    public CommandData(CommandSender sender, Command command, String label, String[] args, boolean isTabComplete) {
         this.sender = sender;
         this.command = command;
         this.label = label;
@@ -39,7 +39,7 @@ public class CommandData {
     }
 
     public void sendMessage(String msg) {
-        if(isTabComplete) return;
+        if (isTabComplete) return;
         sender.sendMessage(msg);
     }
 }

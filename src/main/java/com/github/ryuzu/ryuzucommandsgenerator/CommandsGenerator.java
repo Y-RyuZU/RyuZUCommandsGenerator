@@ -40,4 +40,20 @@ public class CommandsGenerator {
         constitution.setCondition(condition);
         CommandsGenerator.commands.add(constitution);
     }
+
+    public static void registerCommand(String command, Consumer<CommandData> process, List<String>  permissions, Predicate<CommandData> condition, Predicate<CommandData> tabcompletecondition) {
+        CommandComposition constitution = new CommandComposition(command, process);
+        constitution.setPermissions(permissions);
+        constitution.setCondition(condition);
+        constitution.setTabcompleteconditon(tabcompletecondition);
+        CommandsGenerator.commands.add(constitution);
+    }
+
+    public static void registerCommand(String command, Consumer<CommandData> process, String permission, Predicate<CommandData> condition, Predicate<CommandData> tabcompletecondition) {
+        CommandComposition constitution = new CommandComposition(command, process);
+        constitution.setPermissions(Collections.singletonList(permission));
+        constitution.setCondition(condition);
+        constitution.setTabcompleteconditon(tabcompletecondition);
+        CommandsGenerator.commands.add(constitution);
+    }
 }

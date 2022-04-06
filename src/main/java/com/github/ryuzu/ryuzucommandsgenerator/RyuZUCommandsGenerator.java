@@ -29,6 +29,7 @@ public class RyuZUCommandsGenerator {
     private static void implement() {
         for(String label : CommandsGenerator.commands.stream().map(CommandComposition::getLabel).collect(Collectors.toList())) {
             Objects.requireNonNull(getPlugin().getCommand(label)).setExecutor(executer);
+            Objects.requireNonNull(getPlugin().getCommand(label)).setTabCompleter(executer);
         }
     }
 }

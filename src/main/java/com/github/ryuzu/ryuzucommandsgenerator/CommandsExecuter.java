@@ -20,7 +20,7 @@ public class CommandsExecuter implements CommandExecutor, TabCompleter {
             if (!constitution.canExecute(data)) continue;
             constitution.process(data);
         }
-        return false;
+        return true;
     }
 
     @Override

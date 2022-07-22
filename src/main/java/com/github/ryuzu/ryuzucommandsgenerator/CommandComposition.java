@@ -72,7 +72,7 @@ public class CommandComposition {
     }
 
     public boolean canExecute(CommandData data) {
-        if (!(data.getArgs().length >= getArgs().length && getTabComplete(data) != null && getLastMacth(data)) && hasPermission(data) && tabcompleteconditon.test(data)) return false;
+        if (!canTabComplete(data)) return false;
         return condition.test(data);
     }
 

@@ -89,7 +89,7 @@ CommandsGenerator.registerCommand(String, Consumer<CommandData>, List<String>, P
                     ~~~
                     data.getSender().sendMessage(ChatColor.GREEN + "ゲームにエントリーしました");
                 },
-                "rpo.op",
+                "test.op",
                 data -> true,
                 data -> {
                     if (!(data.getSender() instanceof Player)) {

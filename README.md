@@ -70,7 +70,7 @@ CommandsGenerator.registerCommand(String, Consumer<CommandData>, List<String>, P
                         return true;
                     },
                     data -> {
-                        if (!data.getSender() instanceof Player) {
+                        if (!(data.getSender() instanceof Player)) {
                             data.sendMessage(ChatColor.RED + "このコマンドはプレイヤーのみ実行できます");
                             return false;
                         }

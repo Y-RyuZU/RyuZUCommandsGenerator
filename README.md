@@ -2,7 +2,7 @@
 マイクラのコマンド実装がだるすぎたので作ったよ！
 ## 使い方
 ### まず初めに
-onEnableにRyuZUCommandsGeneratorのインスタンスを作ろう！(クラス変数として残しておくといいカモ)
+onEnableにRyuZUCommandsGeneratorのインスタンスを作成！(後に記述するCommandの登録を行ったあとにインスタンスを作成してください)
 ```
 new RyuZUCommandsGenerator(JavaPlugin);
 ```

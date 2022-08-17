@@ -22,11 +22,11 @@ CommandsGenerator.registerCommand(String, Consumer<CommandData>, List<String>, P
 CommandsGenerator.registerCommand(String, Consumer<CommandData>, String, Predicate<CommandData>, Predicate<CommandData>)
 CommandsGenerator.registerCommand(String, Consumer<CommandData>, List<String>, Predicate<CommandData>, Predicate<CommandData>)
 ```
-第一引数: コマンド
-第二引数: 実行する内容
-第三引数: 必要なパーミッション
-第四引数: 実行するための条件
-第五引数: タブ保管するための条件
+- 第一引数: コマンド
+- 第二引数: 実行する内容
+- 第三引数: 必要なパーミッション
+- 第四引数: 実行するための条件
+- 第五引数: タブ保管するための条件
 
 例1:
 ```

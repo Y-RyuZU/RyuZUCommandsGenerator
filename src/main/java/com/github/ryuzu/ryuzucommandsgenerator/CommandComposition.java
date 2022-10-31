@@ -86,7 +86,8 @@ public class CommandComposition {
         if (length == 0) return new ArrayList<>();
         for (int i = 0; i < length; i++) {
             if (length - 1 == i) {
-                if (!commandargs[i].startsWith(data.getArgs()[i])) return null;
+                if(data.isTabComplete()) if (!commandargs[i].startsWith(data.getArgs()[i])) return null;
+                else if (!commandargs[i].equals(data.getArgs()[i])) return null;
             } else {
                 if (commandargs[i].equalsIgnoreCase("#object#")) continue;
                 if (!commandargs[i].equals(data.getArgs()[i])) return null;

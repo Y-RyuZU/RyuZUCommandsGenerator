@@ -28,7 +28,7 @@ public class CommandComposition {
     }
 
     public String[] getArgs() {
-        return Arrays.stream(command.split("\\.")).filter(arg -> !arg.equals(getLabel())).toArray(String[]::new);
+        return Arrays.stream(command.split("\\.")).skip(1).toArray(String[]::new);
     }
 
     void setPermissions(List<String> permissions) {
@@ -80,8 +80,8 @@ public class CommandComposition {
                 if (!getArgs()[i].equals(data.getArgs()[i])) return null;
             }
         }
-        if (completer.getCompletes().size() > data.getArgs().length) return null;
-        if (completer.getCompletes().size() < data.getArgs().length) return new ArrayList<>();
+        if (getArgs().length > data.getArgs().length) return null;
+        if (getArgs().length < data.getArgs().length) return new ArrayList<>();
         return completer.getCompletes().get(data.getArgs().length - 1).stream()
                 .map(complete -> complete.apply(data))
                 .flatMap(List::stream)

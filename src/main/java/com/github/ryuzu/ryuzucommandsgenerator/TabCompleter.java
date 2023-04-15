@@ -21,7 +21,7 @@ public class TabCompleter {
 
     public void addComplete(int index, Function<CommandData, List<String>> complete) {
         if(this.completes.size() < index + 1)
-            for (int i = this.completes.size(); i < index; i++)
+            for (int i = this.completes.size(); i < index + 1; i++)
                 this.completes.add(new ArrayList<>());
         this.completes.get(index).add(complete);
     }

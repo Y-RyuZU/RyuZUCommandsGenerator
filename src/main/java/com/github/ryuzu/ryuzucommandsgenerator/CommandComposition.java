@@ -95,10 +95,6 @@ public class CommandComposition {
         return getArgs()[length - 1].equals(data.getArgs()[length - 1]);
     }
 
-    public CommandComposition permission(String permissions) {
-        return permissions(Collections.singletonList(permissions));
-    }
-
     public CommandComposition permissions(String... permissions) {
         setPermissions(Arrays.asList(permissions));
         return this;

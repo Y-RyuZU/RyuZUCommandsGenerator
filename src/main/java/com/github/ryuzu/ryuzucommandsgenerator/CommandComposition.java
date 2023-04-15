@@ -99,6 +99,11 @@ public class CommandComposition {
         return permissions(Collections.singletonList(permissions));
     }
 
+    public CommandComposition permissions(String... permissions) {
+        setPermissions(Arrays.asList(permissions));
+        return this;
+    }
+
     public CommandComposition permissions(List<String> permissions) {
         setPermissions(permissions);
         return this;

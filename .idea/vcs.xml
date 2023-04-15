@@ -2,25 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/AdvancedScope" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/AdvancedScopeVer1.17" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/ConnectionPlayesrSeparater" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/DenyItemsRemove" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/DiceCommand" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/DiverseSkill" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/ItemsPost" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/LinkChest" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/MidiFileMusic" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/PhantasyGateManager" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/RyuZUBungeeChat" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/RyuZUConfigurationUtilities" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/RyuZUMagicSkills" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/RyuZUPacketOptimizer" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/RyuZUPluginChat" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/RyuZUPluginChatRadis" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/RyuZUZombieHunt" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/SkriptSkills" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/SkriptSkillsMethods" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/pluginbuild" vcs="Git" />
   </component>
 </project>

@@ -10,50 +10,37 @@ import java.util.function.Predicate;
 public class CommandsGenerator {
     public static List<CommandComposition> commands = new ArrayList<>();
 
-    public static void registerCommand(String command, Consumer<CommandData> process) {
-        CommandComposition constitution = new CommandComposition(command, process);
-        CommandsGenerator.commands.add(constitution);
+    public static CommandComposition registerCommand(String command, Consumer<CommandData> process) {
+        return registerCommand(command, process, Collections.emptyList());
     }
 
-    public static void registerCommand(String command, Consumer<CommandData> process, List<String> permissions) {
-        CommandComposition constitution = new CommandComposition(command, process);
-        constitution.setPermissions(permissions);
-        CommandsGenerator.commands.add(constitution);
+    public static CommandComposition registerCommand(String command, Consumer<CommandData> process, String permission) {
+        return registerCommand(command, process, Collections.singletonList(permission));
     }
 
-    public static void registerCommand(String command, Consumer<CommandData> process, String permission) {
-        CommandComposition constitution = new CommandComposition(command, process);
-        constitution.setPermissions(Collections.singletonList(permission));
-        CommandsGenerator.commands.add(constitution);
+    public static CommandComposition registerCommand(String command, Consumer<CommandData> process, List<String> permissions) {
+        return registerCommand(command, process, permissions, data -> true);
     }
 
-    public static void registerCommand(String command, Consumer<CommandData> process, List<String> permissions, Predicate<CommandData> condition) {
-        CommandComposition constitution = new CommandComposition(command, process);
-        constitution.setPermissions(permissions);
-        constitution.setCondition(condition);
-        CommandsGenerator.commands.add(constitution);
+    public static CommandComposition registerCommand(String command, Consumer<CommandData> process, String permission, Predicate<CommandData> condition) {
+        return registerCommand(command, process, Collections.singletonList(permission), condition, data -> true);
     }
 
-    public static void registerCommand(String command, Consumer<CommandData> process, String permission, Predicate<CommandData> condition) {
-        CommandComposition constitution = new CommandComposition(command, process);
-        constitution.setPermissions(Collections.singletonList(permission));
-        constitution.setCondition(condition);
-        CommandsGenerator.commands.add(constitution);
+    public static CommandComposition registerCommand(String command, Consumer<CommandData> process, List<String> permissions, Predicate<CommandData> condition) {
+        return registerCommand(command, process, permissions, condition, data -> true);
     }
 
-    public static void registerCommand(String command, Consumer<CommandData> process, List<String>  permissions, Predicate<CommandData> condition, Predicate<CommandData> tabcompletecondition) {
-        CommandComposition constitution = new CommandComposition(command, process);
-        constitution.setPermissions(permissions);
-        constitution.setCondition(condition);
-        constitution.setTabcompleteconditon(tabcompletecondition);
-        CommandsGenerator.commands.add(constitution);
+
+    public static CommandComposition registerCommand(String command, Consumer<CommandData> process, String permission, Predicate<CommandData> condition, Predicate<CommandData> tabcompletecondition) {
+        return registerCommand(command, process, Collections.singletonList(permission), condition, tabcompletecondition);
     }
 
-    public static void registerCommand(String command, Consumer<CommandData> process, String permission, Predicate<CommandData> condition, Predicate<CommandData> tabcompletecondition) {
-        CommandComposition constitution = new CommandComposition(command, process);
-        constitution.setPermissions(Collections.singletonList(permission));
-        constitution.setCondition(condition);
-        constitution.setTabcompleteconditon(tabcompletecondition);
+    public static CommandComposition registerCommand(String command, Consumer<CommandData> process, List<String> permissions, Predicate<CommandData> condition, Predicate<CommandData> tabcompletecondition) {
+        CommandComposition constitution = new CommandComposition(command, process)
+                .permissions(permissions)
+                .condition(condition)
+                .tabCompleteConditon(tabcompletecondition);
         CommandsGenerator.commands.add(constitution);
+        return constitution;
     }
 }

@@ -76,7 +76,7 @@ public class CommandComposition {
             }
         }
         if (args.length > data.getArgs().length) return null;
-        if (args.length < data.getArgs().length) return new ArrayList<>();
+        if (completer.getCompletes().size() < data.getArgs().length) return new ArrayList<>();
         return completer.getCompletes().get(data.getArgs().length - 1).stream()
                 .map(complete -> complete.apply(data))
                 .flatMap(List::stream)

@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 public class CommandComposition {
     private final String command;
+    private final String label;
+    private final String[] args;
     private final Consumer<CommandData> process;
     private List<String> permissions = new ArrayList<>();
     private Predicate<CommandData> condition = (data) -> true;
@@ -19,16 +21,14 @@ public class CommandComposition {
 
     public CommandComposition(String command, Consumer<CommandData> process) {
         this.command = command;
+        this.label = command.split("\\.")[0];
+        this.args = Arrays.stream(command.split("\\.")).skip(1).toArray(String[]::new);
         this.process = process;
         this.completer = new TabCompleter(command);
     }
 
     String getLabel() {
-        return command.split("\\.")[0];
-    }
-
-    public String[] getArgs() {
-        return Arrays.stream(command.split("\\.")).skip(1).toArray(String[]::new);
+        return label;
     }
 
     void setPermissions(List<String> permissions) {
@@ -37,10 +37,6 @@ public class CommandComposition {
 
     void setCondition(Predicate<CommandData> condition) {
         this.condition = condition;
-    }
-
-    Predicate<CommandData> getTabcompleteconditon() {
-        return tabcompleteconditon;
     }
 
     void setTabcompleteConditon(Predicate<CommandData> tabcompleteconditon) {
@@ -54,7 +50,7 @@ public class CommandComposition {
     }
 
     boolean canTabComplete(CommandData data) {
-        return data.getArgs().length >= getArgs().length && getTabComplete(data) != null && tabcompleteconditon.test(data) && hasPermission(data);
+        return data.getArgs().length >= args.length && getTabComplete(data) != null && tabcompleteconditon.test(data) && hasPermission(data);
     }
 
     boolean canExecute(CommandData data) {
@@ -67,32 +63,25 @@ public class CommandComposition {
     }
 
     List<String> getTabComplete(CommandData data) {
-        int length = Math.min(data.getArgs().length, getArgs().length);
+        int length = Math.min(data.getArgs().length, args.length);
         if (length == 0) return new ArrayList<>();
         for (int i = 0; i < length; i++) {
             if (length - 1 == i) {
-                if (data.isTabComplete())
-                    if (!getArgs()[i].startsWith(data.getArgs()[i])) return null;
-                else
-                    if (!getArgs()[i].equals(data.getArgs()[i])) return null;
+                if (data.isTabComplete()) {
+                    if (!args[i].startsWith(data.getArgs()[i])) return null;
+                } else if (!args[i].equalsIgnoreCase(data.getArgs()[i])) return null;
             } else {
-                if (getArgs()[i].equalsIgnoreCase("#object#")) continue;
-                if (!getArgs()[i].equals(data.getArgs()[i])) return null;
+                if (args[i].equalsIgnoreCase("#object#")) continue;
+                if (!args[i].equalsIgnoreCase(data.getArgs()[i])) return null;
             }
         }
-        if (getArgs().length > data.getArgs().length) return null;
-        if (getArgs().length < data.getArgs().length) return new ArrayList<>();
+        if (args.length > data.getArgs().length) return null;
+        if (args.length < data.getArgs().length) return new ArrayList<>();
         return completer.getCompletes().get(data.getArgs().length - 1).stream()
                 .map(complete -> complete.apply(data))
                 .flatMap(List::stream)
                 .filter(complete -> complete.startsWith(data.getArgs()[data.getArgs().length - 1]))
                 .collect(Collectors.toList());
-    }
-
-    boolean getLastMacth(CommandData data) {
-        int length = Math.min(data.getArgs().length, getArgs().length);
-        if (length == 0) return true;
-        return getArgs()[length - 1].equals(data.getArgs()[length - 1]);
     }
 
     public CommandComposition permissions(String... permissions) {
@@ -125,7 +114,7 @@ public class CommandComposition {
         return this;
     }
 
-    public CommandComposition onlinePlayerComplete(int index) {
+    public CommandComposition completePlayer(int index) {
         completer.setOnlinePlayerComplete(index);
         return this;
     }

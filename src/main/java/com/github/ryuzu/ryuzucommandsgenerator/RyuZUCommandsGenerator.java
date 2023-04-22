@@ -9,16 +9,27 @@ import java.util.stream.Collectors;
 public class RyuZUCommandsGenerator {
     private static JavaPlugin plugin;
     public static CommandsExecuter executer = new CommandsExecuter();
-    public static String resistpermissionmessage = ChatColor.RED + "権限がありません";
+    public static String resistPermissionMessage = ChatColor.RED + "権限がありません";
 
-    public RyuZUCommandsGenerator(JavaPlugin plugin) {
+    private RyuZUCommandsGenerator(JavaPlugin plugin) {
         RyuZUCommandsGenerator.plugin = plugin;
         implement();
     }
 
-    public RyuZUCommandsGenerator(JavaPlugin plugin , String resistpermissionmessage) {
+    private RyuZUCommandsGenerator(JavaPlugin plugin , String resistPermissionMessage) {
         RyuZUCommandsGenerator.plugin = plugin;
-        RyuZUCommandsGenerator.resistpermissionmessage = resistpermissionmessage;
+        RyuZUCommandsGenerator.resistPermissionMessage = resistPermissionMessage;
+        implement();
+    }
+
+    public static void initialize(JavaPlugin plugin) {
+        RyuZUCommandsGenerator.plugin = plugin;
+        implement();
+    }
+
+    public static void initialize(JavaPlugin plugin , String resistPermissionMessage) {
+        RyuZUCommandsGenerator.plugin = plugin;
+        RyuZUCommandsGenerator.resistPermissionMessage = resistPermissionMessage;
         implement();
     }
 

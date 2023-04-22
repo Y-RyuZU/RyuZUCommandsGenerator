@@ -45,7 +45,7 @@ public class CommandComposition {
 
     boolean hasPermission(CommandData data) {
         boolean has = permissions.stream().anyMatch(perm -> data.getSender().hasPermission(perm));
-        if (!has) data.sendMessage(RyuZUCommandsGenerator.resistpermissionmessage);
+        if (!has) data.sendMessage(RyuZUCommandsGenerator.resistPermissionMessage);
         return has;
     }
 
@@ -68,7 +68,7 @@ public class CommandComposition {
         for (int i = 0; i < length; i++) {
             if (length - 1 == i) {
                 if (data.isTabComplete()) {
-                    if (!args[i].startsWith(data.getArgs()[i])) return null;
+                    if (!args[i].toUpperCase().startsWith(data.getArgs()[i].toUpperCase())) return null;
                 } else if (!args[i].equalsIgnoreCase(data.getArgs()[i])) return null;
             } else {
                 if (args[i].equalsIgnoreCase("#object#")) continue;
@@ -106,6 +106,11 @@ public class CommandComposition {
 
     public CommandComposition complete(int index, List<String> complete) {
         completer.addComplete(index, data -> complete);
+        return this;
+    }
+
+    public CommandComposition complete(int index, String... complete) {
+        completer.addComplete(index, data -> Arrays.asList(complete));
         return this;
     }
 

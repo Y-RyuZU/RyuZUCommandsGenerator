@@ -3,6 +3,7 @@
 ## 使い方
 ### まず初めに
 onEnableにRyuZUCommandsGeneratorのインスタンスを作成！(後に記述するCommandの登録を行ったあとの行でインスタンスを作成してください)
+インスタンスの作成と同時に、CommandsGeneratorで登録したコマンドがすべてサーバーに登録されます。
 ```
 new RyuZUCommandsGenerator(JavaPlugin);
 ```
@@ -21,6 +22,8 @@ CommandsGenerator.registerCommand(String, Consumer<CommandData>, String, Predica
 CommandsGenerator.registerCommand(String, Consumer<CommandData>, List<String>, Predicate<CommandData>)
 CommandsGenerator.registerCommand(String, Consumer<CommandData>, String, Predicate<CommandData>, Predicate<CommandData>)
 CommandsGenerator.registerCommand(String, Consumer<CommandData>, List<String>, Predicate<CommandData>, Predicate<CommandData>)
+
+registerCommandメソッドではCommandCompositionが返り値として与えられるので、CommandCompositionに対してBuilderのようにconditionやpermissionsを書き連ねることも可能です。
 ```
 - 第一引数: コマンド
 - 第二引数: 実行する内容
@@ -100,6 +103,9 @@ CommandsGenerator.registerCommand(String, Consumer<CommandData>, List<String>, P
                 }
         );
 ```
+タブ保管を後述で追記する方法もあります。
+complete(index , List<String>)で指定した引数目にタブ保管を追加します。
+completePlayer(index)はすべてのオンラインプレイヤーを指定した引数目に保管として追加します。
 
 #### 注意点
 第五引数(タブ保管するための条件)でメッセージを送るときは

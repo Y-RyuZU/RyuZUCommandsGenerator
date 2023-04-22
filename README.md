@@ -5,11 +5,11 @@
 onEnableにRyuZUCommandsGeneratorのインスタンスを作成！(後に記述するCommandの登録を行ったあとの行でインスタンスを作成してください)
 インスタンスの作成と同時に、CommandsGeneratorで登録したコマンドがすべてサーバーに登録されます。
 ```
-new RyuZUCommandsGenerator(JavaPlugin);
+RyuZUCommandsGenerator.initialize(JavaPlugin);
 ```
 または
 ```
-new RyuZUCommandsGenerator(JavaPlugin, String);
+RyuZUCommandsGenerator.initialize(JavaPlugin, String);
 ```
 第二引数のStrginはコマンドを入力する権限がなかった時表示されるメッセージ
 Default: ChatColor.RED + "権限がありません"

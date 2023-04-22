@@ -1,5 +1,6 @@
 package com.github.ryuzu.ryuzucommandsgenerator;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +11,8 @@ public class RyuZUCommandsGenerator {
     private static JavaPlugin plugin;
     public static CommandsExecuter executer = new CommandsExecuter();
     public static String resistPermissionMessage = ChatColor.RED + "権限がありません";
+    public static final int VERSION = Integer.parseInt((Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".").substring(3).substring(0, (Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".").substring(3).indexOf("_")));
+
 
     private RyuZUCommandsGenerator(JavaPlugin plugin) {
         RyuZUCommandsGenerator.plugin = plugin;
@@ -40,6 +43,7 @@ public class RyuZUCommandsGenerator {
     private static void implement() {
         for(String label : CommandsGenerator.commands.stream().map(CommandComposition::getLabel).collect(Collectors.toList())) {
             Objects.requireNonNull(getPlugin().getCommand(label)).setExecutor(executer);
+            if(VERSION < 13) continue;
             Objects.requireNonNull(getPlugin().getCommand(label)).setTabCompleter(executer);
         }
     }
